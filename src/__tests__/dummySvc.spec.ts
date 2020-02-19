@@ -5,7 +5,7 @@ import axios from 'axios'
 jest.mock('axios')
 
 describe('fetchData', () => {
-    it('should fetch proper data', async () => {
+   xit('should fetch proper data', async () => {
         const data = {
             data: {
                 userId: "1"
@@ -19,7 +19,7 @@ describe('fetchData', () => {
         expect(axios.get).toHaveBeenCalledWith(`${API}1`)
     })
 
-    it('should return error on error', async () => {
+    xit('should return error on error', async () => {
         const errorMsg = "Dummy error msg";
         (axios.get as jest.Mock).mockImplementationOnce(() => Promise.reject(new Error(errorMsg)))
 
