@@ -1,6 +1,6 @@
 import { logger } from './utils/logger';
-import * as dotenv from 'dotenv'
-dotenv.config()
+// import * as dotenv from 'dotenv'
+// dotenv.config()
 import * as sourceMaps from 'source-map-support'
 sourceMaps.install()
 import { App, LogLevel, ExpressReceiver, ExpressReceiverOptions } from '@slack/bolt'
