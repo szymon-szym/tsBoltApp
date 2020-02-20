@@ -5,3 +5,4 @@ coverage/
 .vscode/
 Debug.log
 secrets.yaml
+.env
