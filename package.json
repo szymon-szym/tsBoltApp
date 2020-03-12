@@ -18,30 +18,26 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.17.2",
     "@types/jest": "^24.9.1",
     "@types/node": "^13.5.0",
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "delay": "^4.3.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "onchange": "^6.1.0",
     "serve": "^11.3.0",
-    "supertest": "^4.0.2",
     "ts-jest": "^25.0.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@types/morgan": "^1.7.37",
+    "@slack/bolt": "^1.6.0",
+    "@types/source-map-support": "^0.5.1",
     "axios": "^0.19.2",
-    "express": "^4.17.1",
-    "morgan": "^1.9.1",
-    "winston": "^3.2.1",
     "source-map-support": "^0.5.16",
-    "@types/source-map-support": "^0.5.1"
-
+    "winston": "^3.2.1"
   }
 }
