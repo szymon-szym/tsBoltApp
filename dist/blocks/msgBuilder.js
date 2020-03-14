@@ -1,40 +1,38 @@
-import { SectionBlock, MrkdwnElement, Button, PlainTextElement } from '@slack/web-api';
-
-export function createSimpleSection(text: string): SectionBlock {
-    const textEl: MrkdwnElement = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function createSimpleSection(text) {
+    var textEl = {
         type: 'mrkdwn',
         text: text,
     };
-
     return {
         type: 'section',
         text: textEl,
     };
 }
-
-export function createSectionWithBtn(sectionText: string, btnText: string, actionId: string, value: string): SectionBlock {
-    const textElBtn: PlainTextElement = {
+exports.createSimpleSection = createSimpleSection;
+function createSectionWithBtn(sectionText, btnText, actionId, value) {
+    var textElBtn = {
         type: 'plain_text',
         text: btnText,
         emoji: true,
     };
-
-    const textElSection: MrkdwnElement = {
+    var textElSection = {
         type: 'mrkdwn',
         text: sectionText,
     };
-
-    const button: Button = {
+    var button = {
         type: 'button',
         text: textElBtn,
         style: 'primary',
         action_id: actionId,
         value: value,
     };
-
     return {
         type: 'section',
         text: textElSection,
         accessory: button,
     };
 }
+exports.createSectionWithBtn = createSectionWithBtn;
+//# sourceMappingURL=msgBuilder.js.map

@@ -7,21 +7,17 @@ var winston_1 = __importDefault(require("winston"));
 var options = {
     transports: [
         new winston_1.default.transports.Console({
-            level: process.env.NODE_ENV === "production" ? "error" : "debug",
+            level: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
         }),
-        new winston_1.default.transports.File({
-            filename: "Debug.log",
-            level: "debug"
-        })
-    ]
+    ],
 };
 exports.logger = winston_1.default.createLogger(options);
 exports.stream = {
     write: function (message) {
         exports.logger.info(message);
-    }
+    },
 };
-if (process.env.NODE_ENV !== "production") {
-    exports.logger.debug("Logginig initialized on debug level");
+if (process.env.NODE_ENV !== 'production') {
+    exports.logger.debug('Logginig initialized on debug level');
 }
 //# sourceMappingURL=logger.js.map

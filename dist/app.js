@@ -6,33 +6,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var sourceMaps = __importStar(require("source-map-support"));
 sourceMaps.install();
-var express_1 = __importDefault(require("express"));
-var bodyParser = __importStar(require("body-parser"));
-var morgan_1 = __importDefault(require("morgan"));
-var logger_1 = require("./utils/logger");
-var routes_1 = __importDefault(require("./api/routes"));
-logger_1.logger.debug('creating app');
-var App = (function () {
-    function App() {
-        this.express = express_1.default();
-        this.middleware();
-        this.routes();
+var bolt_1 = require("@slack/bolt");
+var SlackApp = (function () {
+    function SlackApp() {
+        this.receiver = new bolt_1.ExpressReceiver({
+            signingSecret: process.env.SLACK_SIGNING_SECRET || '1234',
+        });
+        this.app = new bolt_1.App({
+            token: process.env.SLACK_BOT_TOKEN,
+            receiver: this.receiver,
+            logLevel: bolt_1.LogLevel.INFO,
+        });
     }
-    App.prototype.middleware = function () {
-        this.express.use(bodyParser.json());
-        this.express.use(bodyParser.urlencoded({ extended: false }));
-        this.express.use(morgan_1.default('combined', { stream: logger_1.stream }));
-    };
-    App.prototype.routes = function () {
-        routes_1.default(this.express);
-    };
-    return App;
+    return SlackApp;
 }());
-exports.default = new App().express;
+exports.default = SlackApp;
 //# sourceMappingURL=app.js.map

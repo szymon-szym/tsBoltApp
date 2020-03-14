@@ -1,21 +1,17 @@
-/* eslint-disable @typescript-eslint/camelcase */
-import { logger } from './../utils/logger';
-import { App } from '@slack/bolt';
-
-export const initializeTest = (app: App): void => {
-    app.command('/open-form', ({ ack, context, payload }) => {
-        logger.debug('slash command was called');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var logger_1 = require("./../utils/logger");
+exports.initializeTest = function (app) {
+    app.command('/open-form', function (_a) {
+        var ack = _a.ack, context = _a.context, payload = _a.payload;
+        logger_1.logger.debug('slash command was called');
         ack();
         try {
-            /* eslint-disable-next-line security/detect-non-literal-fs-filename */
-            const result = app.client.views.open({
+            var result = app.client.views.open({
                 token: context.botToken,
-                // Pass a valid trigger_id within 3 seconds of receiving it
                 trigger_id: payload.trigger_id,
-                // View payload
                 view: {
                     type: 'modal',
-                    // View identifier
                     callback_id: 'view_1',
                     title: {
                         type: 'plain_text',
@@ -58,8 +54,10 @@ export const initializeTest = (app: App): void => {
                 },
             });
             console.log(result);
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
         }
     });
 };
+//# sourceMappingURL=slash-commands.js.map
