@@ -58,8 +58,8 @@ exports.initializeHomeTab = function (app) {
                                     callback_id: 'home_view',
                                     blocks: [
                                         msgBuilder_1.createSimpleSection('*Welcome* to the home view of the app - dynamic txt'),
-                                        msgBuilder_1.createSectionWithBtn('Please pick this option if you want to know the answer for all questions', 'Push the button', 'my_action_id', 'test value'),
-                                        msgBuilder_1.createSectionWithBtn('Please pick this option if you want to know the answer for some questions', 'Click the button', 'my_action_id', 'test value'),
+                                        msgBuilder_1.createSectionWithBtn('Please pick this option if you want to know the answer for all questions', 'Push the button', 'my_action_id1', 'test value'),
+                                        msgBuilder_1.createSectionWithBtn('Please pick this option if you want to know the answer for some questions', 'Click the button', 'my_action_id2', 'test value'),
                                     ],
                                 },
                             })];

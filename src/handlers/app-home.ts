@@ -18,15 +18,9 @@ export const initializeHomeTab = (app: App): void => {
                     blocks: [
                         createSimpleSection('*Welcome* to the home view of the app - dynamic txt'),
                         createSectionWithBtn(
-                            'Please pick this option if you want to know the answer for all questions',
+                            'Dummy description',
                             'Push the button',
-                            'my_action_id',
-                            'test value',
-                        ),
-                        createSectionWithBtn(
-                            'Please pick this option if you want to know the answer for some questions',
-                            'Click the button',
-                            'my_action_id',
+                            'my_action_id1',
                             'test value',
                         ),
                     ],
@@ -38,4 +32,70 @@ export const initializeHomeTab = (app: App): void => {
             logger.error(error);
         }
     });
+    // todo - deal with types...
+    app.action('my_action_id1', (args: any) => {
+        logger.debug('test modal opened');
+        args.ack();
+        try {
+            /* eslint-disable-next-line security/detect-non-literal-fs-filename */
+            const result = app.client.views.open({
+                token: args.context.botToken,
+                // Pass a valid trigger_id within 3 seconds of receiving it
+                trigger_id: args.body.trigger_id,
+                // View payload
+                view: {
+                    type: 'modal',
+                    // View identifier
+                    callback_id: 'test_view',
+                    title: {
+                        type: 'plain_text',
+                        text: 'Dummy modal',
+                    },
+                    blocks: [
+                        {
+                            type: 'section',
+                            text: {
+                                type: 'mrkdwn',
+                                text: 'Welcome to dummy modal',
+                            },
+                            accessory: {
+                                type: 'button',
+                                text: {
+                                    type: 'plain_text',
+                                    text: 'Click me!',
+                                },
+                                action_id: 'button_abc',
+                            },
+                        },
+                        // to be created with custo functions
+                        {
+                            type: 'input',
+                            block_id: 'input_a',
+                            label: {
+                                type: 'plain_text',
+                                text: 'Enter something',
+                            },
+                            element: {
+                                type: 'plain_text_input',
+                                action_id: 'dummy_input',
+                            },
+                        },
+                    ],
+                    submit: {
+                        type: 'plain_text',
+                        text: 'Submit',
+                    },
+                },
+            });
+            logger.debug(result);
+        } catch (error) {
+            logger.error(error);
+        }
+
+    })
+
+    app.view('test_view', async ({ ack, body, view, context }) => {
+        ack();
+        logger.debug(`modal submitted ${body.user.id}`)
+    })
 };
