@@ -35,35 +35,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = require("./utils/logger");
-var app_1 = __importDefault(require("./app"));
-var app_home_1 = require("./handlers/app-home");
-var slash_commands_1 = require("./handlers/slash-commands");
-var port = process.env.PORT || 3000;
-var slackApp = new app_1.default();
-app_home_1.initializeHomeTab(slackApp.app);
-slash_commands_1.initializeTest(slackApp.app);
-slackApp.app.message('hello', function (_a) {
-    var message = _a.message, say = _a.say, payload = _a.payload;
-    say("hello " + message.user);
-    logger_1.logger.debug(JSON.stringify(payload));
-});
-slackApp.receiver.app.get('/', function (req, res) {
-    res.status(200).send();
-});
-(function () { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, slackApp.app.start(port)];
-            case 1:
-                _a.sent();
-                logger_1.logger.debug("app started on port " + port);
-                return [2];
-        }
+var logger_1 = require("./../utils/logger");
+var msgBuilder_1 = require("../blocks/msgBuilder");
+exports.initializeHomeTab = function (app) {
+    app.event('app_home_opened', function (_a) {
+        var event = _a.event, context = _a.context;
+        return __awaiter(void 0, void 0, void 0, function () {
+            var result, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        logger_1.logger.debug('app_home_opened called');
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4, app.client.views.publish({
+                                token: context.botToken,
+                                user_id: event.user,
+                                view: {
+                                    type: 'home',
+                                    callback_id: 'home_view',
+                                    blocks: [
+                                        msgBuilder_1.createSimpleSection('*Welcome* to the home view of the app - dynamic txt'),
+                                        msgBuilder_1.createSectionWithBtn('Please pick this option if you want to know the answer for all questions', 'Push the button', 'my_action_id', 'test value')
+                                    ],
+                                },
+                            })];
+                    case 2:
+                        result = _b.sent();
+                        return [2, result.ok];
+                    case 3:
+                        error_1 = _b.sent();
+                        logger_1.logger.error(error_1);
+                        return [3, 4];
+                    case 4: return [2];
+                }
+            });
+        });
     });
-}); })();
-//# sourceMappingURL=index.js.map
+};
+//# sourceMappingURL=app-home.js.map

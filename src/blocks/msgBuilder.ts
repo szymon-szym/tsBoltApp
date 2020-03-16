@@ -1,19 +1,45 @@
-// import { SectionBlock } from '@slack/bolt';
-import { SectionBlock, MrkdwnElement } from '@slack/web-api'
+/* eslint-disable @typescript-eslint/camelcase */
+import { SectionBlock, MrkdwnElement, Button, PlainTextElement } from '@slack/web-api';
 
-export function createSection(
-    text:string,
-    ):SectionBlock {
-    // dummy implementation
-    let textEl: MrkdwnElement = {
+export function createSimpleSection(text: string): SectionBlock {
+    const textEl: MrkdwnElement = {
         type: 'mrkdwn',
-        text: text
-    }
+        text: text,
+    };
 
-    let res: SectionBlock = {
+    return {
         type: 'section',
-        text: textEl
-    }
-    return res
-    
+        text: textEl,
+    };
+}
+
+export function createSectionWithBtn(
+    sectionText: string,
+    btnText: string,
+    actionId: string,
+    value: string,
+): SectionBlock {
+    const textElBtn: PlainTextElement = {
+        type: 'plain_text',
+        text: btnText,
+        emoji: true,
+    };
+
+    const textElSection: MrkdwnElement = {
+        type: 'mrkdwn',
+        text: sectionText,
+    };
+
+    const button: Button = {
+        type: 'button',
+        text: textElBtn,
+        action_id: actionId,
+        value: value,
+    };
+
+    return {
+        type: 'section',
+        text: textElSection,
+        accessory: button,
+    };
 }
