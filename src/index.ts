@@ -10,7 +10,6 @@ const slackApp = new SlackApp();
 
 // initialize handlers
 initializeHomeTab(slackApp.app);
-initializeTest(slackApp.app);
 
 // test dummy message
 slackApp.app.message('hello', ({ message, say, payload }) => {

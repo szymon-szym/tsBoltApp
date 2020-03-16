@@ -24,7 +24,6 @@ function createSectionWithBtn(sectionText, btnText, actionId, value) {
     var button = {
         type: 'button',
         text: textElBtn,
-        style: 'primary',
         action_id: actionId,
         value: value,
     };

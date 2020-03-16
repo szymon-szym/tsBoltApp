@@ -42,11 +42,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var logger_1 = require("./utils/logger");
 var app_1 = __importDefault(require("./app"));
 var app_home_1 = require("./handlers/app-home");
-var slash_commands_1 = require("./handlers/slash-commands");
 var port = process.env.PORT || 3000;
 var slackApp = new app_1.default();
 app_home_1.initializeHomeTab(slackApp.app);
-slash_commands_1.initializeTest(slackApp.app);
 slackApp.app.message('hello', function (_a) {
     var message = _a.message, say = _a.say, payload = _a.payload;
     say("hello " + message.user);
