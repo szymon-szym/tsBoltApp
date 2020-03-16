@@ -23,6 +23,12 @@ export const initializeHomeTab = (app: App): void => {
                             'my_action_id',
                             'test value',
                         ),
+                        createSectionWithBtn(
+                            'Please pick this option if you want to know the answer for some questions',
+                            'Click the button',
+                            'my_action_id',
+                            'test value',
+                        ),
                     ],
                 },
             });

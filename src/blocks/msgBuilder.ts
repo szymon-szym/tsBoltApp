@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { SectionBlock, MrkdwnElement, Button, PlainTextElement } from '@slack/web-api';
 
 export function createSimpleSection(text: string): SectionBlock {
@@ -12,7 +13,12 @@ export function createSimpleSection(text: string): SectionBlock {
     };
 }
 
-export function createSectionWithBtn(sectionText: string, btnText: string, actionId: string, value: string): SectionBlock {
+export function createSectionWithBtn(
+    sectionText: string,
+    btnText: string,
+    actionId: string,
+    value: string,
+): SectionBlock {
     const textElBtn: PlainTextElement = {
         type: 'plain_text',
         text: btnText,
@@ -27,7 +33,6 @@ export function createSectionWithBtn(sectionText: string, btnText: string, actio
     const button: Button = {
         type: 'button',
         text: textElBtn,
-        style: 'primary',
         action_id: actionId,
         value: value,
     };
