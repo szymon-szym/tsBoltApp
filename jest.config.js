@@ -3,6 +3,7 @@ module.exports = {
     transform: {
         '^.+\\.tsx?$': 'ts-jest'
     },
+    // testRegex = '(/__tests__/.*|\\.spec)\\.js$',
     coverageThreshold: {
         global: {
             branches: 50,

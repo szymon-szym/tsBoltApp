@@ -12,6 +12,7 @@
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
+    "test:verbose": "jest --verbose",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "keywords": [],

@@ -32,7 +32,11 @@ export const initializeHomeTab = (app: App): void => {
             logger.error(error);
         }
     });
+
+
     // todo - deal with types...
+    // views will be moved to separated functions
+    
     app.action('my_action_id1', (args: any) => {
         logger.debug('test modal opened');
         args.ack();

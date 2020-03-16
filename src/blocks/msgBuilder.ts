@@ -6,7 +6,6 @@ export function createSimpleSection(text: string): SectionBlock {
         type: 'mrkdwn',
         text: text,
     };
-
     return {
         type: 'section',
         text: textEl,
