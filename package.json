@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@types/source-map-support": "^0.5.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "source-map-support": "^0.5.16",
     "winston": "^3.2.1",
     "@slack/bolt": "^1.6.0"
